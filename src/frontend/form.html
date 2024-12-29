@@ -39,12 +39,12 @@
 
         <!-- Input field for Eircode with regex pattern validation -->
         <label for="eircode">Eircode:</label>
-        <input type="text" id="eircode" name="eircode" placeholder="Enter your Eircode" required maxlength="6" pattern="^[0-9][A-Za-z0-9]{5}$" title="Eircode must start with a number and contain 6 alphanumeric characters.">
+        <input type="text" id="eircode" name="eircode" placeholder="Enter your Eircode" required maxlength="7" pattern="^[A-Z][0-9][0-9W][A-Z0-9]{4}$" title="Please enter a valid Irish Eircode (e.g. D02X285)">
 
         <!-- Input field for password with regex pattern validation -->
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="8"
-        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]{8,}$"
         title="Password must be at least 8 characters long, with uppercase, lowercase, a digit, and a special character.">
 
         <!-- Submit button to create an account -->
