@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCMH Tracker - Create Account</title>
+    <!-- Links the stylesheet for styling the form and page -->
+    <link rel="stylesheet" href="../frontend/form_style.css" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Displays a welcome message and short description for the user -->
+      <h1>Welcome to BCMH Tracker</h1>
+      <p>
+        Your easy-to-use budget tracker. Start today and take control of your
+        money with confidence!
+      </p>
+      <!-- Form for user registration -->
+      <form onsubmit="return validateForm()" action="/submit" method="POST">
+        <!-- Input field for first name with validation for length -->
+        <label for="first_name">First name:</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required maxlength="20">
+
+        <!-- Input field for second name with validation for length -->
+        <label for="second_name">Second name:</label>
+        <input type="text" id="second_name" name="second_name" placeholder="Enter your second name" required maxlength="20">
+
+        <!-- Input field for email with HTML5 validation -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <!-- Input field for age with range validation -->
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" required min="1" max="100">
+
+        <!-- Input field for phone number with regex pattern validation -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required pattern="\d{10}">
+
+        <!-- Input field for Eircode with regex pattern validation -->
+        <label for="eircode">Eircode:</label>
+        <input type="text" id="eircode" name="eircode" placeholder="Enter your Eircode" required maxlength="6" pattern="^[0-9][A-Za-z0-9]{5}$" title="Eircode must start with a number and contain 6 alphanumeric characters.">
+
+        <!-- Input field for password with regex pattern validation -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="8"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+        title="Password must be at least 8 characters long, with uppercase, lowercase, a digit, and a special character.">
+
+        <!-- Submit button to create an account -->
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+      <div class="footer">
+        <!-- Link to login page for existing users -->
+        <p>
+          If you already have an account
+          <a href="../frontend/login.html">login here</a>
+        </p>
+      </div>
+    </div>
+    <!-- Links the external JavaScript file for form validation -->
+    <script src="../frontend/script.js"></script>
+  </body>
+</html>

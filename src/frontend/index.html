@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Budget Tracker</title>
+    <!-- Links the stylesheet for page styling -->
+    <link rel="stylesheet" href="../frontend/style.css" type="text/css">
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+        <!-- Displays the title and a brief description -->
+        <h1>Welcome to BCMH Tracker</h1>
+        <p>Manage your finances efficiently!</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <!-- Greets the user and provides options -->
+        <h2>Hello User,</h2>
+
+        <!-- Button to trigger the modal for adding transactions -->
+        <button class="button" id="addTransactionBtn">Add Transaction</button>
+
+        <!-- Table for displaying transactions -->
+        <table>
+            <thead>
+                <tr>
+                    <!-- Table headers for transaction attributes -->
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Wallet</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody id="transactionTableBody">
+                <!-- Placeholder for dynamically added transactions -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for Adding a New Transaction -->
+    <div class="modal" id="addTransactionModal">
+        <div class="modal-content">
+            <!-- Close button for the modal -->
+            <span class="close-btn" onclick="closeModal('addTransactionModal')">&times;</span>
+            <!-- Modal title -->
+            <div class="modal-header">Add Transaction</div>
+            <!-- Form to submit transaction details -->
+            <form action="/addTransaction" method="POST">
+                <!-- Input fields for transaction details -->
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br><br>
+
+                <!-- Dropdown for selecting transaction type -->
+                <label>Type:</label><br>
+                <select id="type" name="type" required>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select><br><br>
+
+                <!-- Dropdown for selecting the wallet -->
+                <label>Wallet:</label><br>
+                <select id="walletDropdown" name="walletDropdown" required>
+                  <option value="Other">Other</option>
+                  <option value="Bank">Bank</option>
+                  <option value="Cash">Cash</option>
+                </select><br><br>
+
+                <!-- Input for adding a transaction description -->
+                <label>Description:</label><br>
+                <input type="text" id="description" name="description" placeholder="Description" required><br><br>
+
+                <!-- Input for transaction category -->
+                <label>Category:</label><br>
+                <input type="text" id="category" name="category" placeholder="Category" required><br><br>
+
+                <!-- Input for transaction value -->
+                <label>Value:</label><br>
+                <input type="number" id="value" name="value" placeholder="Value" step="any" required><br><br>
+
+                <!-- Button to save the transaction -->
+                <button type="submit" class="button">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Links the external JavaScript file for interactivity -->
+    <script src="../frontend/script.js"></script>
+  </body>
+</html>
