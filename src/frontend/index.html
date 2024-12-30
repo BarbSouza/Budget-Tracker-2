@@ -75,11 +75,9 @@
                 </select><br><br>
 
                 <!-- Dropdown for selecting the wallet -->
-                <label>Wallet:</label><br>
-                <select id="walletDropdown" name="walletDropdown" required>
-                  <option value="Other">Other</option>
-                  <option value="Bank">Bank</option>
-                  <option value="Cash">Cash</option>
+                <label for="walletDropdown">Wallet:</label><br>
+                <select id="walletDropdown" name="wallet_id" required>
+                  <!-- Options will be dynamically populated -->
                 </select><br><br>
 
                 <!-- Input for adding a transaction description -->
@@ -114,7 +112,7 @@
       </form>
     </div>
   </div>
-  
+
     <!-- Links the external JavaScript file for interactivity -->
     <script src="../frontend/script.js"></script>
   </body>

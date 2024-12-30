@@ -103,6 +103,38 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => console.error("Error fetching transactions:", error));
 });
 
+// Fetches wallets from the server and displays them in a dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/wallets")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((wallets) => {
+      const walletDropdown = document.getElementById("walletDropdown");
+      walletDropdown.innerHTML = ""; // Clear previous options
+
+      if (wallets.length === 0) {
+        // If no wallets, show a placeholder option
+        const placeholderOption = document.createElement("option");
+        placeholderOption.textContent = "No wallets available";
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        walletDropdown.appendChild(placeholderOption);
+      } else {
+        // Populate the dropdown with wallet options
+        wallets.forEach((wallet) => {
+          const option = document.createElement("option");
+          option.value = wallet.wallet_id;
+          option.textContent = wallet.wallet_name;
+          walletDropdown.appendChild(option);
+        });
+      }
+    })
+    .catch((error) => console.error("Error fetching wallets:", error));
+});
 // Function to validate the user registration form
 function validateForm() {
   // Get form values

@@ -26,5 +26,8 @@ routes.delete("/transactions/:id", userController.deleteTransaction);
 // Route to add a new wallet to the database for the logged-in user
 routes.post("/addWallet", userController.addWallet);
 
+// Route to fetch all wallets for the logged-in user
+routes.get("/wallets", userController.getWallets);
+
 // Exporting the routes to be used in the main application
 module.exports = routes;

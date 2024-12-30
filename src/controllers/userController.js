@@ -31,28 +31,25 @@ const addWallet = (req, res) => {
 // Handles the creation of a new transaction for the logged-in user
 const userTransaction = (req, res) => {
   if (!loggedUserinfo) {
-    return res.status(401).send("User not logged in"); // Ensures the user is logged in
+    return res.status(401).send("User not logged in");
   }
-  const { date, type, walletDropdown, description, category, value } = req.body;
-  const add =
-    "INSERT INTO Transactions ( Date, type, Wallet, Description, Category, Value, userInfo_id) VALUES (?,?,?,?,?,?,?)";
+
+  const { date, type, wallet_id, description, category, value } = req.body;
+
+  const query = `
+    INSERT INTO Transactions (Date, type, wallet_id, Description, Category, Value, userInfo_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
   connection.query(
-    add,
-    [
-      date,
-      type,
-      walletDropdown,
-      description,
-      category,
-      value,
-      loggedUserinfo.userInfo_id,
-    ],
+    query,
+    [date, type, wallet_id, description, category, value, loggedUserinfo.userInfo_id],
     (err) => {
       if (err) {
-        console.log("error inserting transaction: ", err);
+        console.error("Error inserting transaction:", err);
+        return res.status(500).send("Error adding transaction");
       }
-      res.sendFile(path.join(__dirname, "../frontend/index.html")); // Redirects to the main page
-    },
+      res.sendFile(path.join(__dirname, "../frontend/index.html"));
+    }
   );
 
   // Reads and updates the HTML file to display the logged-in user's name
@@ -119,6 +116,23 @@ const deleteTransaction = (req, res) => {
     } else {
       res.status(200).send("Transaction deleted successfully"); // Confirms deletion
     }
+  });
+};
+
+// Retrieves all wallets associated with the logged-in user
+const getWallets = (req, res) => {
+  if (!loggedUserinfo) {
+    return res.status(401).send("User not logged in");
+  }
+
+  const query = "SELECT wallet_id, wallet_name FROM Wallets WHERE userInfo_id = ?";
+  connection.query(query, [loggedUserinfo.userInfo_id], (err, results) => {
+    if (err) {
+      console.error("Error fetching wallets:", err);
+      return res.status(500).send("Error fetching wallets");
+    }
+    console.log("Fetched Wallets:", results); // Debug log
+    res.json(results);
   });
 };
 
@@ -200,5 +214,6 @@ module.exports = {
   getTransactions,
   loginUser,
   deleteTransaction,
-  addWallet
+  addWallet,
+  getWallets
 };

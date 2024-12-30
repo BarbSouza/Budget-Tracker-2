@@ -89,12 +89,17 @@ header {
 
 .modal-content {
     background: white;
-    width: 300px;
+    width: 300px; /* Adjust as needed */
+    max-height: 90%; /* Ensure it doesn't exceed the viewport */
     padding: 20px;
-    margin: 10% auto;
+    margin: 0 auto; /* Horizontal centering */
     border-radius: 8px;
     box-shadow: 0px 0px 10px #000;
-    position: relative;
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center both axes */
+     /* Enable scrolling if content overflows */
 }
 
 .modal-header {
@@ -118,7 +123,7 @@ header {
   }
   
   .modal-content input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;

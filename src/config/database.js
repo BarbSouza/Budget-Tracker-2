@@ -86,33 +86,13 @@ function initDB() {
       }
     });
 
-    // Creates the `Transactions` table with a foreign key referencing `mysql_table`
-    const createTransactionsTable = `CREATE TABLE IF NOT EXISTS Transactions (
-      transaction_id INT AUTO_INCREMENT PRIMARY KEY,
-      Date DATE,
-      type VARCHAR(255),
-      Wallet VARCHAR(255),
-      Description VARCHAR(255),
-      Category VARCHAR(355),
-      Value DOUBLE,
+    // Creates the `Wallets` table with a foreign key referencing `mysql_table`
+    const createWalletTable = `CREATE TABLE IF NOT EXISTS Wallets (
+      wallet_id INT AUTO_INCREMENT PRIMARY KEY,
+      wallet_name VARCHAR(255) NOT NULL,
+      initial_balance DOUBLE NOT NULL,
       userInfo_id INT,
       FOREIGN KEY (userInfo_id) REFERENCES mysql_table(userInfo_id) ON DELETE CASCADE
-    );`;
-    connection.query(createTransactionsTable, function (err) {
-      if (err) {
-        console.error("Error creating transactions table");
-      } else {
-        console.log("Transactions Table Created");
-      }
-    });
-
-    // Add this to the initDB function in database.js
-const createWalletTable = `CREATE TABLE IF NOT EXISTS Wallets (
-  wallet_id INT AUTO_INCREMENT PRIMARY KEY,
-  wallet_name VARCHAR(255) NOT NULL,
-  initial_balance DOUBLE NOT NULL,
-  userInfo_id INT,
-  FOREIGN KEY (userInfo_id) REFERENCES mysql_table(userInfo_id) ON DELETE CASCADE
 );`;
 
 connection.query(createWalletTable, function (err) {
@@ -122,7 +102,30 @@ connection.query(createWalletTable, function (err) {
   } else {
     console.log("Wallets Table Created");
   }
-});
+  });
+
+    // Creates the `Transactions` table with a foreign key referencing `mysql_table`
+    const createTransactionsTable = `CREATE TABLE IF NOT EXISTS Transactions (
+      transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+      Date DATE,
+      type VARCHAR(255),
+      wallet_id INT,
+      Description VARCHAR(255),
+      Category VARCHAR(355),
+      Value DOUBLE,
+      userInfo_id INT,
+      FOREIGN KEY (userInfo_id) REFERENCES mysql_table(userInfo_id) ON DELETE CASCADE,
+      FOREIGN KEY (wallet_id) REFERENCES Wallets(wallet_id) ON DELETE CASCADE
+    );`;
+    connection.query(createTransactionsTable, function (err) {
+      if (err) {
+        console.error("Error creating transactions table");
+      } else {
+        console.log("Transactions Table Created");
+      }
+    });
+
+
 
 
   });
