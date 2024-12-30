@@ -94,13 +94,23 @@ const userInfo = (req, res) => {
 
 // Retrieves all transactions associated with the logged-in user
 const getTransactions = (req, res) => {
-  const query = "SELECT * FROM Transactions WHERE userInfo_id = ?";
+  if (!loggedUserinfo) {
+    return res.status(401).send("User not logged in");
+  }
+
+  const query = `
+    SELECT t.transaction_id, t.Date, t.type, w.wallet_name AS Wallet, t.Description, t.Category, t.Value
+    FROM Transactions t
+    LEFT JOIN Wallets w ON t.wallet_id = w.wallet_id
+    WHERE t.userInfo_id = ?`;
+
   connection.query(query, [loggedUserinfo.userInfo_id], (err, results) => {
     if (err) {
       console.error("Error fetching transactions:", err);
       res.status(500).send("Error fetching transactions");
     } else {
-      res.json(results); // Sends the transactions as a JSON response
+      console.log("Fetched Transactions:", results); // Debug log
+      res.json(results);
     }
   });
 };

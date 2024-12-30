@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             year: "numeric",
           })}</td>
           <td>${transaction.type}</td>
-          <td>${transaction.Wallet}</td>
+          <td>${transaction.Wallet || "No Wallet"}</td> <!-- Display wallet name -->
           <td>${transaction.Description}</td>
           <td>${transaction.Category}</td>
           <td>${transactionValue.toFixed(2)}</td>
