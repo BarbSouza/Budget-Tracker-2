@@ -51,7 +51,7 @@ function initDB() {
     });
 
     // Sample CSV data containing user information
-    const csvData = `"Barbara, Souza",20,"barbarasouza@example.com",0851245488,D14DE02,"bARBS.123*"
+    const csvData = `"Barbara, Souza",20,"barbara.candido.souza@gmail.com",0851245488,D14DE02,"bARBS.123*"
     "John, Doe",30,"johndoe@example.com",0893216548,1YR5DD,"Password@123"
     "Jane, Smith",28,"janesmith@example.com",0892856548,8MH7WE,"SecurePass!456"
     "Michael, Johnson",35,"michaeljohnson@example.com",0898523694,7RP0RR,"StrongPass#789"
