@@ -111,6 +111,30 @@ header {
     font-weight: bold;
 }
 
+/* Wallet Modal */
+.modal-header {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .modal-content button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #6a11cb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
 /* Table */
 table {
     width: 100%;

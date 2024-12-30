@@ -8,6 +8,22 @@ const form = (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/login.html"));
 };
 
+const addWallet = (req, res) => {
+  if (!loggedUserinfo) {
+    return res.status(401).send("User not logged in");
+  }
+  const { walletName, initialBalance } = req.body;
+  const query = "INSERT INTO Wallets (wallet_name, initial_balance, userInfo_id) VALUES (?, ?, ?)";
+  connection.query(query, [walletName, initialBalance, loggedUserinfo.userInfo_id], (err) => {
+    if (err) {
+      console.error("Error adding wallet:", err);
+      res.status(500).send("Error adding wallet");
+    } else {
+      res.redirect("/"); // Redirect to the main page after successful addition
+    }
+  });
+};
+
 // Handles the creation of a new transaction for the logged-in user
 const userTransaction = (req, res) => {
   if (!loggedUserinfo) {
@@ -180,4 +196,5 @@ module.exports = {
   getTransactions,
   loginUser,
   deleteTransaction,
+  addWallet
 };

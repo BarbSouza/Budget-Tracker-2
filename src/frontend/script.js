@@ -15,6 +15,11 @@ document
     showModal("addTransactionModal");
   });
 
+  // Show Wallet Modal
+document.getElementById("addWalletBtn").addEventListener("click", function () {
+  showModal("addWalletModal");
+});
+
 // Adds event listeners to all "Edit" buttons to show the "Edit Transaction" modal dynamically
 document.querySelectorAll(".edit-btn").forEach((button) => {
   button.addEventListener("click", function () {

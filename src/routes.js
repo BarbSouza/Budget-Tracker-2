@@ -23,5 +23,8 @@ routes.get("/transactions", userController.getTransactions);
 // Route to delete a specific transaction based on its ID
 routes.delete("/transactions/:id", userController.deleteTransaction);
 
+// Route to add a new wallet to the database for the logged-in user
+routes.post("/addWallet", userController.addWallet);
+
 // Exporting the routes to be used in the main application
 module.exports = routes;

@@ -6,7 +6,6 @@ const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  name: process.env.DB_NAME,
   multipleStatements: true, // Allows multiple SQL statements in a single query
 });
 
@@ -52,7 +51,8 @@ function initDB() {
     });
 
     // Sample CSV data containing user information
-    const csvData = `"John, Doe",30,"johndoe@example.com",0893216548,1YR5DD,"Password@123"
+    const csvData = `"Barbara, Souza",20,"barbarasouza@example.com",0851245488,D14DE02,"bARBS.123*"
+    "John, Doe",30,"johndoe@example.com",0893216548,1YR5DD,"Password@123"
     "Jane, Smith",28,"janesmith@example.com",0892856548,8MH7WE,"SecurePass!456"
     "Michael, Johnson",35,"michaeljohnson@example.com",0898523694,7RP0RR,"StrongPass#789"
     "Tommy, Bean",40,"tommybean@example.com",0894859612,EYR5DD,"TommyPass$321"`;
@@ -105,6 +105,26 @@ function initDB() {
         console.log("Transactions Table Created");
       }
     });
+
+    // Add this to the initDB function in database.js
+const createWalletTable = `CREATE TABLE IF NOT EXISTS Wallets (
+  wallet_id INT AUTO_INCREMENT PRIMARY KEY,
+  wallet_name VARCHAR(255) NOT NULL,
+  initial_balance DOUBLE NOT NULL,
+  userInfo_id INT,
+  FOREIGN KEY (userInfo_id) REFERENCES mysql_table(userInfo_id) ON DELETE CASCADE
+);`;
+
+connection.query(createWalletTable, function (err) {
+  if (err) {
+    console.error("Error creating Wallets table");
+    throw err;
+  } else {
+    console.log("Wallets Table Created");
+  }
+});
+
+
   });
 }
 
