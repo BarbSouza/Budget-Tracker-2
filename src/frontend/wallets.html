@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallets</title>
+    <link rel="stylesheet" href="../frontend/style.css" type="text/css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1>My Wallets</h1>
+      <nav>
+        <ul id="navbar">
+          <li><a href="../frontend/index.html">Transactions</a></li>
+          <li><a href="../frontend/wallets.html" class="active">Wallets</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="reports.html">Reports</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Main Section -->
+    <div class="container">
+      <h2>Your Wallets</h2>
+      <!-- Table for Wallet Balances -->
+      <table>
+        <thead>
+          <tr>
+            <th>Wallet Name</th>
+            <th>Initial Balance</th>
+          </tr>
+        </thead>
+        <tbody id="walletTableBody">
+          <!-- Wallet data will be dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="../frontend/script.js"></script>
+  </body>
+</html>
+
